@@ -240,7 +240,7 @@ billboard_tidy
 
 
 ## Varias variables en una misma columna
-
+###hay ejercicio opcional
 El conjunto de datos `tuberculosis`, de la _World Health Organization_, presenta este tipo de desordenación (además de la vista en el apartado anterior). Muestra el número de casos de tuberculosis por país, año y grupo demográfico. Estos grupos demográficos se muestran en los nombres de las columnas como `m` o `f` (sexo) y la edad (0-14, 15-24, 25-34, 35-44, 45-54, 55-64, 65- y desconocido (`u`)).
 
 ```{r load TB}
@@ -257,6 +257,16 @@ Para pasar a formato _tidy_ necesitamos realizar dos operaciones en este caso. E
 Convierte el conjunto de datos TB en _tidy_ utilizando `gather` y `separate`.
 
 ```{r}
+tb_tidy <- raw %>% gather(key = "demografia", value = "casos", -country, -year)
+
+tb_tidy <- tb_tidy %>%
+  separate(
+    col = demografia,
+    into = c("sexo", "edad"), #divido en 2 columnas nuevas
+    sep = 1 #separo en la primera posicion
+  )
+
+tb_tidy
 
 ```
 
