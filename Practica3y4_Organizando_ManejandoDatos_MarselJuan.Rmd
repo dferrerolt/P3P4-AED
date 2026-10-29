@@ -257,6 +257,8 @@ Para pasar a formato _tidy_ necesitamos realizar dos operaciones en este caso. E
 Convierte el conjunto de datos TB en _tidy_ utilizando `gather` y `separate`.
 
 ```{r}
+
+# Agrupa todas las columnas demográficas en dos columnas: 'demografia' guarda el nombre de cada variable y 'casos' su valor, manteniendo 'country' y 'year' como identificadores.
 tb_tidy <- raw %>% gather(key = "demografia", value = "casos", -country, -year)
 
 tb_tidy <- tb_tidy %>%
@@ -290,7 +292,13 @@ Obtén la versión _tidy_ del conjunto de datos `weather` utilizando las funcion
 
 ```{r}
 
+#idea: dividir el dataset en 3 columnas nuevas, día (1-31) y tmax (temperatura max del día) tmin (temperatura min del día)
+tidy_weather <- raw %>%  
+  pivot_longer(names_to="dia", values_to = "tmax_tmin", cols = 'd1':'d31', values_drop_na = TRUE, names_prefix = "d") %>% 
+  pivot_wider(names_from=element, values_from = tmax_tmin) %>%
+  unite("fecha",year,month,dia,sep = "-")
 
+tidy_weather
 ```
 
 
