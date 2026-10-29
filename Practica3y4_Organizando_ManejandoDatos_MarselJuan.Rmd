@@ -398,9 +398,9 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 * En el data frame  `planes` quédate con todas las variables excepto `speed` y `type`.
 
 ```{r }
-flights %>% select(-time_hour, -ends_with("time"))
+fligths <- flights %>% select(-time_hour, -ends_with("time"))
 
-planes %>% select(-speed, -type)
+planes <- planes %>% select(-speed, -type)
 ```
 
 ### Ejercicio 10
@@ -408,7 +408,7 @@ planes %>% select(-speed, -type)
 Incorpora una nueva variable a `flights` denominado `Full_Date` que sea de tipo `character` que incorpore una cadena de texto de la forma `d-m-Y`. Donde `d` indica día, `m` mes e `Y` año, a partir de la información incluida en el data frame. Utiliza una función de **DPLYR** que permita conseguir este propósito. Elimina las variables originales involucradas en la creación de la nueva variable.
 
 ```{r }
-
+flights 
 
 ```
 
